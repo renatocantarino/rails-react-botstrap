@@ -2,15 +2,34 @@ import * as React from 'react';
 import { useState } from 'react';
 
 const Question = (props) => {
-  const [likeCount, setlikeCount] = useState(0);
-  const [deslikeCount, setdeslikeCount] = useState(0);
+  const [likeCount, setlikeCount] = useState(props.item.likes_counter || 0);
+  const [deslikeCount, setdeslikeCount] = useState(
+    props.item.dislikes_counter || 0
+  );
+  const questionsUrl = 'http://127.0.0.1:3000/api/v1/questions';
 
   const handleLiked = () => {
     setlikeCount(likeCount + 1);
+    updateCounterQuestion({ count_for: 'like' });
   };
 
   const handleDisliked = () => {
     setdeslikeCount(deslikeCount + 1);
+    updateCounterQuestion({ count_for: 'dislike' });
+  };
+
+  const updateCounterQuestion = (data) => {
+    console.log(data);
+    fetch(`${questionsUrl}/${props.item.id}/update_counter`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
 
   return (

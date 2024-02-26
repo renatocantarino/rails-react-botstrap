@@ -10,6 +10,7 @@ const QuestionList = () => {
     fetch(questionsUrl)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setQuestionList(data);
       });
   };
