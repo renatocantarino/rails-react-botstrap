@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Question from './Question';
+import QuestionsNotFound from './QuestionsNotFound';
+import NewQuestion from './NewQuestion';
 
 const QuestionList = () => {
   const tags = [
@@ -11,6 +13,10 @@ const QuestionList = () => {
     {
       label: 'Ruby',
       value: '1',
+    },
+    {
+      label: 'RoR',
+      value: '2',
     },
   ];
 
@@ -41,7 +47,15 @@ const QuestionList = () => {
   return (
     <div className="row">
       <div className="col-lg-10 mx-auto">
-        <p className="lead fw-bold">Filter by </p>
+        <p className="lead fw-bold">Filter by Tag </p>
+        <button
+          type="button"
+          className="btn btn-primary mt-3  mb-3"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Modal
+        </button>
         <select
           className="form-select form-select-lg"
           value={tagOption}
@@ -53,10 +67,13 @@ const QuestionList = () => {
             </option>
           ))}
         </select>
-        {questionList.map((item) => (
-          <Question item={item} key={item.id} />
-        ))}
+        {questionList.length > 0 ? (
+          questionList.map((item) => <Question item={item} key={item.id} />)
+        ) : (
+          <QuestionsNotFound tagName={tagOption} />
+        )}
       </div>
+      <NewQuestion />
     </div>
   );
 };
