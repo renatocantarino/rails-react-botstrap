@@ -48,14 +48,7 @@ const QuestionList = () => {
     <div className="row">
       <div className="col-lg-10 mx-auto">
         <p className="lead fw-bold">Filter by Tag </p>
-        <button
-          type="button"
-          className="btn btn-primary mt-3  mb-3"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Modal
-        </button>
+
         <select
           className="form-select form-select-lg"
           value={tagOption}
@@ -67,6 +60,14 @@ const QuestionList = () => {
             </option>
           ))}
         </select>
+        <button
+          type="button"
+          className="btn btn-primary mt-3  mb-3 "
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          New Question
+        </button>
         {questionList.length > 0 ? (
           questionList.map((item) => <Question item={item} key={item.id} />)
         ) : (
