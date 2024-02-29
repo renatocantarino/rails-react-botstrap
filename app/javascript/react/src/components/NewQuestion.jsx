@@ -16,23 +16,36 @@ const NewQuestion = (props) => {
       value: '2',
     },
   ];
+  const questionsEndpoint = '/api/v1/questions';
 
-  const [formField, setFormField] = useState({
+  const defaultForm = {
     title: '',
     tag: tags[0].value,
-  });
+  };
+
+  const [formField, setFormField] = useState(defaultForm);
 
   const FormFieldChangeHandler = (event) => {
-    setFormField({
-      ...formField,
-      [event.target.name]: [event.target.value],
-    });
+    const { name, value } = event.target;
+    setFormField({ ...formField, [name]: value });
+  };
+
+  const createNewQuestion = (data) => {
+    fetch(questionsEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    console.log(formField);
+    createNewQuestion(formField);
   };
 
   return (

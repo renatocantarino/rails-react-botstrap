@@ -1,2 +1,11 @@
 ###
 GET http://127.0.0.1:3000/api/v1/questions
+
+###
+POST http://127.0.0.1:3000/api/v1/questions
+Content-Type: application/json
+
+{
+   "title":"How works Machine Learning",
+   "tag": "DataSciece"   
+}

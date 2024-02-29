@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 const QuestionsNotFound = (props) => {
-  console.log(props);
   return (
     <div>
       <div

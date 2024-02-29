@@ -18,11 +18,15 @@ const QuestionList = () => {
       label: 'RoR',
       value: '2',
     },
+    {
+      label: 'DataSciece',
+      value: '3',
+    },
   ];
 
   const [questionList, setQuestionList] = useState([]);
   const [tagOption, setTagOption] = useState(tags[0].value);
-  const questionsUrl = 'http://127.0.0.1:3000/api/v1/questions';
+  const questionsUrl = '/api/v1/questions';
 
   const tagHandler = (event) => {
     setQuestionList([]);
@@ -35,7 +39,6 @@ const QuestionList = () => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setQuestionList(data);
       });
   };

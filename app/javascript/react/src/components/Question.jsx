@@ -6,7 +6,7 @@ const Question = (props) => {
   const [deslikeCount, setdeslikeCount] = useState(
     props.item.dislikes_counter || 0
   );
-  const questionsUrl = 'http://127.0.0.1:3000/api/v1/questions';
+  const questionsUrl = '/api/v1/questions';
 
   const handleLiked = () => {
     setlikeCount(likeCount + 1);
@@ -19,7 +19,6 @@ const Question = (props) => {
   };
 
   const updateCounterQuestion = (data) => {
-    console.log(data);
     fetch(`${questionsUrl}/${props.item.id}/update_counter`, {
       method: 'put',
       headers: {
