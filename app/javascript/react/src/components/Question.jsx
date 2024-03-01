@@ -18,6 +18,18 @@ const Question = (props) => {
     updateCounterQuestion({ count_for: 'dislike' });
   };
 
+  const deleteQuestionHandler = () => {
+    fetch(`${questionsUrl}/${props.item.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
+
   const updateCounterQuestion = (data) => {
     fetch(`${questionsUrl}/${props.item.id}/update_counter`, {
       method: 'put',
@@ -65,6 +77,13 @@ const Question = (props) => {
           ) : (
             ''
           )}
+        </button>
+        <button
+          className="btn btn-danger position-relative"
+          style={{ marginLeft: '51em' }}
+          onClick={deleteQuestionHandler}
+        >
+          Delete
         </button>
       </div>
     </div>

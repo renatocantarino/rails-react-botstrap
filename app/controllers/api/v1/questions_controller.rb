@@ -23,6 +23,14 @@ class Api::V1::QuestionsController < ApplicationController
     render json: @questions , status: :ok
   end
 
+  def destroy
+    @question = Question.delete(params[:id])
+    puts @question
+
+    render json: { status: 'success' } , status: :ok
+
+  end
+
   def create
     @question = Question.new(question_params)
 
